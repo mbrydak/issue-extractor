@@ -1,8 +1,16 @@
+import csv
 import json
 
 import requests
 
-request = requests.get('https://api.github.com/repos/protego-safe/specs/issues?state=all&since=2020-04-22')
+import pandas as pd
 
-request_json = request.json()
-print(request_json)
+parameters = {"since": "2020-04-22", "state": "all"}
+
+response = requests.get(
+    'https://api.github.com/repos/protego-safe/specs/issues', params=parameters)
+
+data = response.json()
+
+df = pd.read_json(data)
+df.to_csv(r'result.csv', index=None)
