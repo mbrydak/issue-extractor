@@ -14,3 +14,5 @@ data = response.json()
 
 df = pd.read_json(data)
 df.to_csv(r'result.csv', index=None)
+
+# dupa
